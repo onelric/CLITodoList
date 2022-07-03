@@ -10,6 +10,7 @@ void Program()
 {
     Renderer* renderer = new Renderer();
 
+    std::cout << "Enter tasks:" << std::endl;
     while (true)
     {
         std::string line;
@@ -27,7 +28,7 @@ void Program()
 
     renderer->RenderTasks();
 
-    std::cout << " Enter Task to highligh as finished! Enter number from 1 to " << renderer->GetTasks().size() << " separated with ,."<< std::endl;
+    std::cout << "Enter Task to mark as finished! Number from 1 to " << renderer->GetTasks().size() << " separated with ,."<< std::endl;
 
     std::string indices;
     getline(std::cin, indices);
@@ -43,7 +44,6 @@ void Program()
         std::stringstream stream;
         stream << splits[i];
         stream >> index;
-        std::cout << index << std::endl;
         indicesToChange.push_back(index);
     }
 
@@ -56,6 +56,7 @@ void Program()
 }
 
 
+// This is the beginning of a horribly structured todo list
 int main()
 {
     Program();
