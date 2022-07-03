@@ -1,10 +1,27 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <fstream>
 
 #include "Renderer.hpp"
 #include "Task.hpp"
 #include "Util.hpp"
+
+const std::string convertTaskToString(Task& task)
+{
+    std::string prefix = "*";
+    switch (task.GetState()) 
+    {
+    case State::Finished:
+        prefix = "J";
+        break;
+    case State::Todo:
+        prefix = "*";
+        break;
+    }
+    std::string string = prefix + " " + task.GetName();
+    return string;
+}
 
 void Program()
 {
@@ -28,6 +45,7 @@ void Program()
 
     renderer->RenderTasks();
 
+    /* CHANGE TASK STATE STAGE */
     std::cout << "Enter Task to mark as finished! Number from 1 to " << renderer->GetTasks().size() << " separated with ,."<< std::endl;
 
     std::string indices;
@@ -51,6 +69,13 @@ void Program()
         renderer->GetTask(index-1).SetFinished();
 
     renderer->RenderTasks();
+
+    // Serialize tasks
+    std::ofstream stream;
+    stream.open("data.dat");
+    for (auto task : renderer->GetTasks())
+        stream << convertTaskToString(task) << std::endl;
+    stream.close();
 
     delete renderer;
 }
