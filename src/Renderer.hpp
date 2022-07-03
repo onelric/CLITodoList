@@ -7,10 +7,12 @@
 class Renderer
 {
 public:
+    void RenderTasks();
+
     std::vector<Task> GetTasks() const { return m_Tasks; }
+    Task& GetTask(unsigned int);
 
     void PushTask(Task);
-    Task& GetTask(unsigned int);
 private:
     std::vector<Task> m_Tasks;
 };
