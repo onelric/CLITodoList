@@ -10,11 +10,19 @@ void Program()
 {
     Renderer* renderer = new Renderer();
 
-    for (int i = 0; i < 5; i++)
+    while (true)
     {
-        std::string taskName;
-        getline(std::cin, taskName);
-        renderer->PushTask(Task(taskName));
+        std::string line;
+        getline(std::cin, line);
+
+        std::string lowerCaseLine;
+        for (char& c : line)
+            lowerCaseLine.push_back(std::tolower(c));
+
+        if (lowerCaseLine == "done")
+            break;
+        else 
+            renderer->PushTask(Task(line));
     }
 
     renderer->RenderTasks();
@@ -22,7 +30,6 @@ void Program()
     std::cout << " Enter Task to highligh as finished! Enter number from 1 to " << renderer->GetTasks().size() << " separated with ,."<< std::endl;
 
     std::string indices;
-
     getline(std::cin, indices);
 
     std::vector<unsigned int> indicesToChange;
