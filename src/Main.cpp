@@ -18,7 +18,6 @@ void Program()
     }
 
     renderer->RenderTasks();
-    std::cout << "Render call 1" << std::endl;
 
     std::cout << " Enter Task to highligh as finished! Enter number from 1 to " << renderer->GetTasks().size() << " separated with ,."<< std::endl;
 
@@ -47,7 +46,6 @@ void Program()
     }
 
     renderer->RenderTasks();
-    std::cout << "Render call 2" << std::endl;
 
     delete renderer;
 }
