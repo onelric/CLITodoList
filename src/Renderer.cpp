@@ -1,25 +1,17 @@
 #include "Renderer.hpp"
 
-void Renderer::PushTask(Task task)
+Renderer::Renderer()
 {
-    m_Tasks.push_back(task);
-}
-
-Task& Renderer::GetTask(unsigned int index)
-{
-    return m_Tasks[index];
+    system("clear");
 }
 
 void Renderer::RenderTasks()
 {
     system("clear");
-    std::cout << "      __--~Tasks~--__\n" << std::endl;
+    std::cout << "   __--~Tasks~--__\n" << std::endl;
 
     for (auto& task : GetTasks())
     {
-        if (task.GetName() == "FinishedTask")
-            task.SetFinished();
-
         char prefix = '*';
         switch (task.GetState())
         {

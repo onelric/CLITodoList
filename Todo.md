@@ -6,4 +6,3 @@
 
 ## Bug Fixing
 
-* Selecting tasks doesn't change the correct ones.

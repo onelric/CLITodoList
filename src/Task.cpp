@@ -1,6 +1,6 @@
 #include "Task.hpp"
 
-Task::Task(const std::string& name) : m_Name(name)
+Task::Task(const std::string& name) : m_Name(name), m_Completed(false), m_State(State::Todo)
 {
 
 }

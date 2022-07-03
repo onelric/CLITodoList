@@ -1,6 +1,5 @@
-#include <cstring>
-#include <stdlib.h>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 #include "Renderer.hpp"
@@ -9,10 +8,9 @@
 
 void Program()
 {
-    // Create renderer
     Renderer* renderer = new Renderer();
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 5; i++)
     {
         std::string taskName;
         getline(std::cin, taskName);
@@ -20,24 +18,36 @@ void Program()
     }
 
     renderer->RenderTasks();
+    std::cout << "Render call 1" << std::endl;
 
     std::cout << " Enter Task to highligh as finished! Enter number from 1 to " << renderer->GetTasks().size() << " separated with ,."<< std::endl;
 
-    std::vector<unsigned int> indicesToChange;
     std::string indices;
+
     getline(std::cin, indices);
+
+    std::vector<unsigned int> indicesToChange;
     std::vector<std::string> splits = split(indices, ",");
     for (int i = 0; i < splits.size(); i++) 
     {
         if (splits[i] == ",")
             splits.erase(std::next(splits.begin(), i));
-        indicesToChange.push_back(i + 1);
+
+        unsigned int index;
+        std::stringstream stream;
+        stream << splits[i];
+        stream >> index;
+        std::cout << index << std::endl;
+        indicesToChange.push_back(index);
     }
 
     for (auto index : indicesToChange)
-        renderer->GetTask(index).SetFinished();
+    {
+        renderer->GetTask(index-1).SetFinished();
+    }
 
     renderer->RenderTasks();
+    std::cout << "Render call 2" << std::endl;
 
     delete renderer;
 }
