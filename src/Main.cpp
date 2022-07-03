@@ -41,9 +41,7 @@ void Program()
     }
 
     for (auto index : indicesToChange)
-    {
         renderer->GetTask(index-1).SetFinished();
-    }
 
     renderer->RenderTasks();
 
