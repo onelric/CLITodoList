@@ -63,10 +63,7 @@ void Program()
     }
 
     for (auto index : indicesToChange)
-    {
-        cout << index << endl;
         renderer.GetTask(index).SetFinished();
-    }
 
     RenderTasksTask(renderer);
 }
